@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d12">
+  <meta name="description" content="Touchline — football news from every club, league and competition. Transfers, breaking stories and global football coverage.">
+  <title>TOUCHLINE — Football News, Worldwide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="ticker"><div class="ticker-inner"><span class="live-dot"></span> FOOTBALL NEWS, WORLDWIDE <span class="ticker-sep">/</span> EVERY CLUB. EVERY LEAGUE. <span class="ticker-right" id="updatedAt">UPDATING NEWS…</span></div></div>
+  <header class="header">
+    <a class="brand" href="/" aria-label="Touchline home"><span class="ball">⚽</span><span>TOUCH<span>LINE</span><small>FOOTBALL NEWS. WORLDWIDE.</small></span></a>
+    <nav id="mainNav">
+      <a class="nav-link active" href="#top">Home</a>
+      <a class="nav-link" href="#latest">Latest News</a>
+      <a class="nav-link" href="#transfers">Transfers</a>
+      <a class="nav-link" href="#leagues">Leagues</a>
+      <a class="nav-link" href="#teams">Teams</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search news">⌕</button>
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☾</button>
+      <button class="menu-btn" id="menuBtn" aria-label="Open navigation">☰</button>
+    </div>
+  </header>
+  <div class="search-wrap" id="searchWrap" hidden><input id="searchInput" type="search" placeholder="Search clubs, players, leagues or headlines…" aria-label="Search football news"><button id="clearSearch">CLEAR</button></div>
+
+  <main class="layout" id="top">
+    <div class="main-column">
+      <section class="lead-grid">
+        <article class="hero" id="hero">
+          <div class="hero-photo"></div><div class="hero-shade"></div>
+          <div class="hero-content"><span class="category-tag">WORLD FOOTBALL</span><h1>THE WORLD<br>OF FOOTBALL.<br><em>ONE TOUCHLINE.</em></h1><p>Breaking stories, transfer reports and news from clubs across the global game.</p><a class="hero-cta" href="#latest">EXPLORE THE LATEST <b>↗</b></a></div>
+          <span class="hero-number">01 <small>/ THE FRONT PAGE</small></span>
+        </article>
+        <section class="top-stories">
+          <div class="section-title"><h2>Top Stories</h2><span class="title-rule"></span></div>
+          <div id="topStories" class="top-story-list"><div class="loading">Finding the latest stories…</div></div>
+        </section>
+      </section>
+
+      <section class="content-section" id="transfers">
+        <div class="section-title section-title-row"><h2>Transfer News</h2><a href="#latest" class="small-link" data-quick-filter="transfer">ALL TRANSFERS ↗</a></div>
+        <div class="transfer-grid" id="transferGrid"><div class="loading">Loading transfer reports…</div></div>
+      </section>
+
+      <section class="content-section" id="latest">
+        <div class="section-title section-title-row"><h2>Latest News <span class="section-count" id="resultCount"></span></h2><span class="last-updated" id="feedStatus">Fetching headlines…</span></div>
+        <div class="filter-row" id="filters">
+          <button class="filter active" data-filter="all">ALL NEWS</button>
+          <button class="filter" data-filter="premier league">PREMIER LEAGUE</button>
+          <button class="filter" data-filter="la liga">LA LIGA</button>
+          <button class="filter" data-filter="champions league">CHAMPIONS LEAGUE</button>
+          <button class="filter" data-filter="serie a">SERIE A</button>
+          <button class="filter" data-filter="transfer">TRANSFERS</button>
+        </div>
+        <div class="news-grid" id="newsGrid"><div class="loading">Getting football news…</div></div>
+        <div class="no-results" id="noResults" hidden>No stories match that search. Try another club, player or league.</div>
+        <button class="load-more" id="loadMore" hidden>LOAD MORE STORIES ↓</button>
+        <p class="source-note">Stories link to their original publishers. Headlines and availability depend on each source's RSS feed.</p>
+      </section>
+    </div>
+
+    <aside class="sidebar">
+      <section class="side-panel" id="leagues"><div class="section-title"><h2>Popular Leagues</h2></div>
+        <div class="side-list">
+          <a href="#latest" data-quick-filter="premier league"><span class="league-icon premier">♛</span><span>Premier League</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="la liga"><span class="league-icon laliga">L</span><span>La Liga</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="serie a"><span class="league-icon seriea">A</span><span>Serie A</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="bundesliga"><span class="league-icon bundes">B</span><span>Bundesliga</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="ligue 1"><span class="league-icon ligue">1</span><span>Ligue 1</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="champions league"><span class="league-icon ucl">✥</span><span>UEFA Champions League</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="international"><span class="league-icon world">◎</span><span>International Football</span><b>↗</b></a>
+        </div>
+      </section>
+      <section class="side-panel" id="teams"><div class="section-title"><h2>Popular Teams</h2></div>
+        <div class="side-list team-list">
+          <a href="#latest" data-quick-filter="real madrid"><span class="club-badge madrid">RM</span><span>Real Madrid</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="barcelona"><span class="club-badge barca">FCB</span><span>Barcelona</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="manchester united"><span class="club-badge united">MU</span><span>Manchester United</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="liverpool"><span class="club-badge liverpool">LFC</span><span>Liverpool</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="manchester city"><span class="club-badge city">MC</span><span>Manchester City</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="arsenal"><span class="club-badge arsenal">AFC</span><span>Arsenal</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="bayern"><span class="club-badge bayern">FCB</span><span>Bayern Munich</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="juventus"><span class="club-badge juve">J</span><span>Juventus</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="psg"><span class="club-badge psg">PSG</span><span>Paris Saint-Germain</span><b>↗</b></a>
+          <a href="#latest" data-quick-filter="inter milan"><span class="club-badge inter">IM</span><span>Inter Milan</span><b>↗</b></a>
+        </div>
+      </section>
+      <section class="promo-panel"><div class="promo-stadium"></div><div class="promo-content"><span>YOUR DAILY FOOTBALL FIX</span><h3>Every club.<br>Every story.</h3><p>One place for the global game.</p><a href="#latest">READ THE NEWS ↗</a></div></section>
+      <section class="side-panel source-panel"><div class="section-title"><h2>About the feed</h2></div><p>Touchline gathers headlines from publicly available football RSS feeds. Open each story to read the full report from its publisher.</p><p class="disclaimer">Independent fan project. Not affiliated with any club, league or publisher.</p></section>
+    </aside>
+  </main>
+
+  <footer><div class="footer-inner"><a class="brand" href="/"><span class="ball">⚽</span><span>TOUCH<span>LINE</span><small>FOOTBALL NEWS. WORLDWIDE.</small></span></a><p>Made for fans who live for the game.</p><a href="#top">BACK TO TOP ↑</a></div><div class="copyright">© <span id="year"></span> TOUCHLINE · Independent football news project · No live scores, just the stories.</div></footer>
+  <script src="/app.js"></script>
+</body>
+</html>
