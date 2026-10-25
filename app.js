@@ -12,6 +12,19 @@ const timeAgo = (date) => {
   const days = Math.floor(hours/24);
   return `${days}d ago`;
 };
+
+function isFootballNews(a) {
+  const text = `${a.title || ""} ${a.description || ""} ${a.url || ""}`.toLowerCase();
+
+  const footballTerms =
+    /\b(football|soccer|premier league|la liga|serie a|bundesliga|ligue 1|champions league|europa league|conference league|fifa|uefa|real madrid|barcelona|chelsea|arsenal|liverpool|manchester city|manchester united|tottenham|bayern|juventus|inter milan|ac milan|psg|transfer|world cup|el clasico|footballer|striker|goalkeeper|midfielder|defender|winger|manager|fc|afc)\b/i;
+
+  const excludedTerms =
+    /\b(golf|golfer|lpga|pga tour|tennis|cricket|rugby|formula 1|f1 racing|basketball|nfl)\b/i;
+
+  return footballTerms.test(text) && !excludedTerms.test(text);
+}
+
 function categoryFor(a) {
   const s = `${a.title||""} ${a.description||""} ${a.source||""}`.toLowerCase();
   if (/transfer|signing|signs for|joins |deal agreed|loan move|bid for|linked with/.test(s)) return "Transfer News";
@@ -58,7 +71,8 @@ async function loadNews() {
     const response = await fetch("/api/news", {headers: {"Accept":"application/json"}});
     if (!response.ok) throw new Error("News API returned " + response.status);
     const data = await response.json();
-    state.articles = Array.isArray(data.articles) ? data.articles : [];
+    state.articles = (Array.isArray(data.articles) ? data.articles : [])
+  .filter(isFootballNews);
     $("#feedStatus").textContent = data.status || "News feed loaded";
     $("#updatedAt").textContent = "UPDATED " + new Date().toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"});
     render();
